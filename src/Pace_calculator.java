@@ -9,8 +9,20 @@ public class Pace_calculator {
        this.minute=m;
        this.secunde=s;
     }
+    int getOre(){
+        return ore;
+    }
+    int getMinute(){
+        return minute;
+    }
+    int getSecunde(){
+        return secunde;
+    }
     int getTotal(){
         return 3600*ore+60*minute+secunde;
+    }
+    float getDistanta(){
+        return distanta;
     }
     void pace_necesar(){
         int total=getTotal();
@@ -23,5 +35,7 @@ public class Pace_calculator {
         timp_s=timp_s%60;
         System.out.printf("Pace-ul necesar este %02d:%02d min/km!!\n\n",timp_m,timp_s);
     }
-
+    int get_s_per_km(){
+        return (int)(getTotal()/getDistanta());
+    }
 }

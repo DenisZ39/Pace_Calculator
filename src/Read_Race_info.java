@@ -1,4 +1,3 @@
-import java.lang.classfile.attribute.SyntheticAttribute;
 import java.util.Scanner;
 
 public class Read_Race_info {

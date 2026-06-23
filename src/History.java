@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class History {
-        private final ArrayList<Pace_calculator> obj;
+        private ArrayList<Pace_calculator> obj;
         public History(){
             this.obj=new ArrayList<>();
         }
@@ -79,5 +79,11 @@ public class History {
             int timp_m=timp_s/60;
             timp_s=timp_s%60;
             System.out.printf("\n\t->Pace is: %02d:%02d min/km\n\n",timp_m,timp_s);
+        }
+        ArrayList<Pace_calculator> getObj(){
+            return obj;
+        }
+        void setObj(ArrayList<Pace_calculator> p){
+            this.obj=p;
         }
 }

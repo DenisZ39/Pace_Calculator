@@ -38,4 +38,7 @@ public class Pace_calculator {
     int get_s_per_km(){
         return (int)(getTotal()/getDistanta());
     }
+    String toCSV(){
+        return getDistanta()+","+getOre()+","+getMinute()+","+getSecunde();
+    }
 }

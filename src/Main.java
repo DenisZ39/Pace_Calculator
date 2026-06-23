@@ -3,14 +3,16 @@ import java.util.Scanner;
 
 public class Main {
 
-    static Scanner scanner=new Scanner(System.in);
-    void main(){
+    static Scanner scanner = new Scanner(System.in);
+
+    void main() {
         //calculator de pace
         scanner.useLocale(Locale.US);
-        boolean isRunning=true;
-        int alege;
-        History p=new History();
-
+        boolean isRunning = true;
+        int alege ;
+        History history = new History();
+        FileManager fileManager = new FileManager();
+        history.setObj(fileManager.saved_history());
         while (isRunning) {
             System.out.println("***********************");
             System.out.println("Calculator pentru pace!");
@@ -24,26 +26,33 @@ public class Main {
             System.out.println("***********************");
 
             System.out.println("Alege optiunea dorita (1-6)!");
-            alege = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                alege = scanner.nextInt();
 
-            switch (alege) {
-                case 1 ->{
-                    Read_Race_info r=new Read_Race_info();
-                    Pace_calculator obj=r.add(scanner);
-                    p.add(obj);
+                switch (alege) {
+                    case 1 -> {
+                        Read_Race_info r = new Read_Race_info();
+                        Pace_calculator obj = r.add(scanner);
+                        history.add(obj);
+                    }
+                    case 2 -> history.pr();
+                    case 3 -> history.longest_run();
+                    case 4 -> System.out.printf("\nTotal distance from all races is: %.2f\n\n", history.total_distance());
+                    case 5 -> history.print();
+                    case 6 -> {
+                        isRunning = false;
+                        System.out.println("Multumesc ca mi-ai folosit programul.\nMult succes!!!!!");
+                        fileManager.SaveHistory(history.getObj());
+                    }
+                    default -> System.out.println("Optiunea aleasa nu exista in meniu");
                 }
-                case 2 -> p.pr();
-                case 3 -> p.longest_run();
-                case 4 -> System.out.printf("\nTotal distance from all races is: %.2f\n\n",p.total_distance());
-                case 5 -> p.print();
-                case 6 -> {
-                    isRunning = false;
-                    System.out.println("Multumesc ca mi-ai folosit programul.\nMult succes!!!!!");
-                }
-                default -> System.out.println("Optiunea aleasa nu exista in meniu");
             }
+            else {
+                System.out.println("Invalid choice!!!\nNeed to be a number from 1-6!!\n");
+                scanner.next();
+            }
+            scanner.close();
         }
-        scanner.close();
-    }
 
+    }
 }

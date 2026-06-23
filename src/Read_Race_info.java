@@ -1,3 +1,4 @@
+import java.lang.classfile.attribute.SyntheticAttribute;
 import java.util.Scanner;
 
 public class Read_Race_info {
@@ -5,29 +6,61 @@ public class Read_Race_info {
 
     Pace_calculator add(Scanner scanner) {
         System.out.print("\nAdauga distanta dorita (km): ");
-        float d = scanner.nextFloat();
-        if (d <= 0) {
-            System.out.println("Distanta trebuie sa fie o valoare mai mare decat 0!!!\n");
-            return null;
+        float d=0;
+        while(d==0) {
+            if (scanner.hasNextFloat()) {
+                d = scanner.nextFloat();
+                if (d <= 0) {
+                    System.out.println("Distanta trebuie sa fie o valoare mai mare decat 0!!!\n");
+                    return null;
+                }
+            } else {
+                System.out.println("Need to be a number!!!\n");
+                scanner.next();
+            }
         }
         System.out.println("Adauga timpul dorit!!");
         System.out.print("\t\tOre: ");
-        int ore = scanner.nextInt();
-        if (ore < 0) {
-            System.out.println("Numar de ore invalid!!\n");
-            return null;
+        int ore=0;
+        while(ore==0) {
+            if (scanner.hasNextInt()) {
+                ore = scanner.nextInt();
+                if (ore < 0) {
+                    System.out.println("Numar de ore invalid!!\n");
+                    return null;
+                }
+            } else {
+                System.out.println("Need to be a number!!!\n");
+                scanner.next();
+            }
         }
         System.out.print("\t\tMinute: ");
-        int minute = scanner.nextInt();
-        if (minute < 0) {
-            System.out.println("Numar de minute invalid!!\n");
-            return null;
+        int minute=0;
+        while (minute==0) {
+            if (scanner.hasNextInt()) {
+                minute = scanner.nextInt();
+                if (minute < 0) {
+                    System.out.println("Numar de minute invalid!!\n");
+                    return null;
+                }
+            } else {
+                System.out.println("Need to be a number!!!\n");
+                scanner.next();
+            }
         }
         System.out.print("\t\tSecunde: ");
-        int secunde = scanner.nextInt();
-        if (secunde < 0) {
-            System.out.println("Numar de secunde invalid!!\n");
-            return null;
+        int secunde=0;
+        while (secunde==0) {
+            if (scanner.hasNextInt()) {
+                secunde = scanner.nextInt();
+                if (secunde < 0) {
+                    System.out.println("Numar de secunde invalid!!\n");
+                    return null;
+                }
+            } else {
+                System.out.println("Need to be a number!!!\n");
+                scanner.next();
+            }
         }
         if (secunde >= 60) {
             minute += secunde / 60;
